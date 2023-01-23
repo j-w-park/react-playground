@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.common.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "styles/test.js"],
+  "compilerOptions": {
+    "target": "ES5",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "paths": {
+      "@test-nextjs/*": ["./*"]
+    }
+  }
+}
