@@ -36,6 +36,10 @@
     "react/jsx-props-no-spreading": "off",
     "react/jsx-filename-extension": ["error", { "extensions": ["tsx"] }],
     "react/function-component-definition": "off",
-    "react-hooks/exhaustive-deps": "error"
+    "react/no-unused-prop-types": "warn",
+    "react/destructuring-assignment": "off",
+    "react-hooks/exhaustive-deps": "error",
+
+    "jsx-a11y/label-has-associated-control": ["error", {}]
   }
 }
