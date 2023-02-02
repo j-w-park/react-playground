@@ -1,6 +1,6 @@
 import './App.css';
-import { MultiRecoilRootTest } from './components/MultiRecoilRootTest';
+import { SelectorTest } from './components/SelectorTest';
 
 export const App = () => {
-  return <MultiRecoilRootTest />;
+  return <SelectorTest />;
 };
