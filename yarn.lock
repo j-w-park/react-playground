@@ -3752,6 +3752,7 @@ prettier@latest:
     eslint-plugin-react-hooks: latest
     prettier: latest
     turbo: latest
+    vite: latest
   languageName: unknown
   linkType: soft
 
@@ -4634,7 +4635,7 @@ turbo@latest:
   languageName: node
   linkType: hard
 
-"vite@npm:^4.1.0":
+"vite@npm:^4.1.0, vite@npm:latest":
   version: 4.1.1
   resolution: "vite@npm:4.1.1"
   dependencies:
