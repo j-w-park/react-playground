@@ -1,5 +1,10 @@
-import './App.css';
+import { ErrorBoundary } from './component/ErrorBoundary';
+import { Content } from './component/Content';
 
 export const App = () => {
-  return <div />;
+  return (
+    <ErrorBoundary>
+      <Content />
+    </ErrorBoundary>
+  );
 };
