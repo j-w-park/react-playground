@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Table } from 'components/Table';
+import { Table } from '@table/components/Table';
 
 export const App = () => {
   return (

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import type { Todo } from 'queries';
+import type { Todo } from '@error-boundary/queries';
 
 export const Content = () => {
   const query = useQuery({

@@ -4310,6 +4310,7 @@ prettier@latest:
   resolution: "table@workspace:apps/table"
   dependencies:
     "@emotion/react": ^11.10.5
+    "@tanstack/react-query": ^4.24.4
     "@types/react": ^18.0.27
     "@types/react-dom": ^18.0.10
     "@types/react-table": ^7

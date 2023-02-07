@@ -1,5 +1,5 @@
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
-import { ErrorBox } from 'component/ErrorBox';
+import { ErrorBox } from '@error-boundary/component/ErrorBox';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Content } from './component/Content';
