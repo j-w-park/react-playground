@@ -813,6 +813,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-table@npm:^7":
+  version: 7.7.14
+  resolution: "@types/react-table@npm:7.7.14"
+  dependencies:
+    "@types/react": "*"
+  checksum: 238047beca9abecc4b3e1e377b823b492b1a00d011b8456012bbcbd2682d5a7e0c0b1cca6384ccc41e724156e991d35e5725a5a3c4b01ff7bbaf095643569da9
+  languageName: node
+  linkType: hard
+
 "@types/react@npm:*, @types/react@npm:18.0.27, @types/react@npm:^18.0.26, @types/react@npm:^18.0.27":
   version: 18.0.27
   resolution: "@types/react@npm:18.0.27"
@@ -3768,6 +3777,15 @@ prettier@latest:
   languageName: unknown
   linkType: soft
 
+"react-table@npm:^7.8.0":
+  version: 7.8.0
+  resolution: "react-table@npm:7.8.0"
+  peerDependencies:
+    react: ^16.8.3 || ^17.0.0-0 || ^18.0.0
+  checksum: 44ca0fb848c6869cd793cede8dc33072b38ebb8f8d2833565afe7cf3eac5d1fa455ac5fb9d06838b16fab0523d5d03e3e82f7645032f71245096e67b892313b9
+  languageName: node
+  linkType: hard
+
 "react@npm:18.2.0, react@npm:^18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
@@ -4294,9 +4312,11 @@ prettier@latest:
     "@emotion/react": ^11.10.5
     "@types/react": ^18.0.27
     "@types/react-dom": ^18.0.10
+    "@types/react-table": ^7
     "@vitejs/plugin-react-swc": ^3.0.0
     react: ^18.2.0
     react-dom: ^18.2.0
+    react-table: ^7.8.0
     typescript: ^4.9.3
     vite: ^4.1.0
     vite-tsconfig-paths: ^4.0.5
