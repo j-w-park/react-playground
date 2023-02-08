@@ -26,7 +26,16 @@ export const App = () => {
         `}
       >
         <h2>Table</h2>
-        <Table />
+
+        <div
+          css={css`
+            flex: 1;
+            display: flex;
+            overflow: auto;
+          `}
+        >
+          <Table />
+        </div>
       </section>
     </div>
   );

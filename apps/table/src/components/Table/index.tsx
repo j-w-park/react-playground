@@ -1,37 +1,69 @@
+import { css } from '@emotion/react';
+import type { Todo } from '@table/queries';
+import { queries } from '@table/queries';
+import { useQuery } from '@tanstack/react-query';
+import type { Column } from 'react-table';
 import { useTable } from 'react-table';
 
-const data = [
+const columns: ReadonlyArray<Column<Todo>> = [
   {
-    col1: 'Hello',
-    col2: 'World',
+    accessor: 'id', // accessor is the "key" in the data
+    Header: 'ID',
   },
   {
-    col1: 'react-table',
-    col2: 'rocks',
+    accessor: 'title',
+    Header: 'Title',
   },
   {
-    col1: 'whatever',
-    col2: 'you want',
+    accessor: 'completed',
+    Header: 'Completed',
+  },
+  {
+    accessor: 'userId',
+    Header: "User's ID",
   },
 ];
 
-const columns = [
-  {
-    Header: 'Column 1',
-    accessor: 'col1', // accessor is the "key" in the data
-  },
-  {
-    Header: 'Column 2',
-    accessor: 'col2',
-  },
-] as const;
-
 export const Table = () => {
-  const tableInstance = useTable({ columns, data });
+  const query = useQuery({
+    queryKey: ['todo'],
+    queryFn: () =>
+      queries.getTodoList().then<Todo[]>((response) => response.json()),
+  });
+
+  const tableInstance = useTable<Todo>({
+    columns,
+    data: query.data ?? [],
+  });
+
+  if (query.isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
-    <table {...tableInstance.getTableProps()}>
-      <thead>
+    <table
+      {...tableInstance.getTableProps()}
+      css={css`
+        // flex-shrink: 0;
+        & tr {
+          background: #242424;
+          outline-bottom: 1px solid #ccc;
+        }
+        & th {
+          padding: 0;
+        }
+        & td {
+          padding: 0;
+        }
+      `}
+    >
+      <thead
+        css={css`
+          position: sticky;
+          top: 0;
+          background-color: inherit;
+        `}
+      >
         {tableInstance.headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((header) => (
@@ -46,9 +78,9 @@ export const Table = () => {
           tableInstance.prepareRow(row);
           return (
             <tr {...row.getRowProps()}>
-              {row.cells.map((cell) => (
-                <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-              ))}
+              {row.cells.map((cell) => {
+                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
+              })}
             </tr>
           );
         })}
