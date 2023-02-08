@@ -45,6 +45,7 @@
     "jsx-a11y/label-has-associated-control": ["error", {}],
 
     "no-shadow": "off",
-    "no-promise-executor-return": "off"
+    "no-promise-executor-return": "off",
+    "no-plusplus": "off"
   }
 }
