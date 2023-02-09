@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { Table } from '@table/components/Table';
+import { TableContainer } from '@table/components/TableContainer';
 import { useState } from 'react';
 
 export const App = () => {
@@ -32,7 +32,7 @@ export const App = () => {
       >
         <h2>Table</h2>
 
-        <Table />
+        <TableContainer />
       </section>
 
       <section

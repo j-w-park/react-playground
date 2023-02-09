@@ -90,7 +90,7 @@ const columns: ColumnDef<Todo>[] = [
   },
 ];
 
-export const Table = memo(() => {
+export const TableContainer = memo(() => {
   const query = useQuery({
     queryKey: ['todo'],
     queryFn: () =>
