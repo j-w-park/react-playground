@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
 export const TableStyles = styled.div`
+  height: 100%;
+
   display: flex;
   overflow: auto;
 
@@ -8,6 +10,8 @@ export const TableStyles = styled.div`
 
   & > table {
     width: 100%;
+    height: max-content;
+
     box-sizing: content-box;
     border-collapse: collapse;
 
