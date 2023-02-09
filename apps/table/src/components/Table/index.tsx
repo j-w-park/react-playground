@@ -1,26 +1,91 @@
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import type { Todo } from '@table/queries';
 import { queries } from '@table/queries';
 import { useQuery } from '@tanstack/react-query';
-import type { Column } from 'react-table';
-import { useTable } from 'react-table';
+import type { ColumnDef } from '@tanstack/react-table';
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from '@tanstack/react-table';
+import { TableStyles } from './styles';
 
-const columns: ReadonlyArray<Column<Todo>> = [
+const BaseStyledCell = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+`;
+
+const HeaderCell = styled(BaseStyledCell)`
+  justify-content: center;
+  & > * {
+    width: max-content;
+  }
+`;
+
+const columns: ColumnDef<Todo>[] = [
   {
-    accessor: 'id', // accessor is the "key" in the data
-    Header: 'ID',
+    accessorKey: 'id',
+    header: () => (
+      <HeaderCell>
+        <span>ID</span>
+      </HeaderCell>
+    ),
+    cell: (row) => (
+      <BaseStyledCell
+        css={css`
+          justify-content: center;
+        `}
+      >
+        <span>{row.getValue<Todo['id']>()}</span>
+      </BaseStyledCell>
+    ),
   },
   {
-    accessor: 'title',
-    Header: 'Title',
+    accessorKey: 'title',
+    header: () => (
+      <HeaderCell>
+        <span>Title</span>
+      </HeaderCell>
+    ),
+    cell: (row) => (
+      <BaseStyledCell>
+        <span>{row.getValue<Todo['title']>()}</span>
+      </BaseStyledCell>
+    ),
   },
   {
-    accessor: 'completed',
-    Header: 'Completed',
+    accessorKey: 'userId',
+    header: () => (
+      <HeaderCell>
+        <span>User ID</span>
+      </HeaderCell>
+    ),
+    cell: (row) => (
+      <BaseStyledCell
+        css={css`
+          justify-content: flex-end;
+        `}
+      >
+        <span>{row.getValue<Todo['userId']>()}</span>
+      </BaseStyledCell>
+    ),
   },
   {
-    accessor: 'userId',
-    Header: "User's ID",
+    accessorKey: 'completed',
+    header: () => (
+      <HeaderCell>
+        <span>Completed</span>
+      </HeaderCell>
+    ),
+    cell: (row) => (
+      <BaseStyledCell>
+        <span>
+          {row.getValue<Todo['completed']>() ? 'done' : 'in progress'}
+        </span>
+      </BaseStyledCell>
+    ),
   },
 ];
 
@@ -31,60 +96,58 @@ export const Table = () => {
       queries.getTodoList().then<Todo[]>((response) => response.json()),
   });
 
-  const tableInstance = useTable<Todo>({
+  const tableInstance = useReactTable<Todo>({
     columns,
     data: query.data ?? [],
+    getCoreRowModel: getCoreRowModel(),
   });
 
   if (query.isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <div
+        css={css`
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #555;
+        `}
+      >
+        Loading...
+      </div>
+    );
   }
 
   return (
-    <table
-      {...tableInstance.getTableProps()}
-      css={css`
-        // flex-shrink: 0;
-        & tr {
-          background: #242424;
-          outline-bottom: 1px solid #ccc;
-        }
-        & th {
-          padding: 0;
-        }
-        & td {
-          padding: 0;
-        }
-      `}
-    >
-      <thead
-        css={css`
-          position: sticky;
-          top: 0;
-          background-color: inherit;
-        `}
-      >
-        {tableInstance.headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((header) => (
-              <th {...header.getHeaderProps()}>{header.render('Header')}</th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-
-      <tbody {...tableInstance.getTableBodyProps()}>
-        {tableInstance.rows.map((row) => {
-          tableInstance.prepareRow(row);
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map((cell) => {
-                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
-              })}
+    <TableStyles>
+      <table>
+        <thead>
+          {tableInstance.getHeaderGroups().map(({ id, headers }) => (
+            <tr key={id}>
+              {headers.map((header) => (
+                <th key={header.id}>
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
+                </th>
+              ))}
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+          ))}
+        </thead>
+
+        <tbody>
+          {tableInstance.getRowModel().rows.map((row) => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </TableStyles>
   );
 };
