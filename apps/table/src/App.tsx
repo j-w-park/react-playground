@@ -35,7 +35,11 @@ export const App = () => {
         <Table />
       </section>
 
-      <section>
+      <section
+        css={css`
+          user-select: none;
+        `}
+      >
         <label>
           <p
             css={css`
