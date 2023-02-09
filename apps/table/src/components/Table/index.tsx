@@ -9,6 +9,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { memo } from 'react';
 import { TableStyles } from './styles';
 
 const BaseStyledCell = styled.div`
@@ -89,7 +90,7 @@ const columns: ColumnDef<Todo>[] = [
   },
 ];
 
-export const Table = () => {
+export const Table = memo(() => {
   const query = useQuery({
     queryKey: ['todo'],
     queryFn: () =>
@@ -150,4 +151,4 @@ export const Table = () => {
       </table>
     </TableStyles>
   );
-};
+});
