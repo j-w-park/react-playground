@@ -8,12 +8,12 @@ export type Todo = {
 };
 
 export const queries = {
-  getTodoList: () =>
-    new Promise<Response>((resolve) =>
-      setTimeout(() => {
-        resolve(fetch('https://jsonplaceholder.typicode.com/todos'));
-      }, 1000)
-    ),
+  getTodoList: async () => {
+    await new Promise<void>((resolve) => setTimeout(resolve, 1000));
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+    const todoList = (await response.json()) as Todo[];
+    return todoList;
+  },
 };
 
 export const queryClient = new QueryClient({

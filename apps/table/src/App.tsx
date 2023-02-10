@@ -3,7 +3,7 @@ import { Suspense, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from './components/ErrorFallback';
 import { LoadingFallback } from './components/LoadingFallback';
-import { TableContainer } from './components/TableContainer';
+import { Table } from './components/Table';
 
 export const App = () => {
   const maxWidth = 800;
@@ -37,7 +37,7 @@ export const App = () => {
 
         <ErrorBoundary fallbackRender={ErrorFallback}>
           <Suspense fallback={<LoadingFallback />}>
-            <TableContainer />
+            <Table />
           </Suspense>
         </ErrorBoundary>
       </section>

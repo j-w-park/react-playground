@@ -36,6 +36,11 @@ export const columns: ColumnDef<Todo>[] = [
   },
   {
     accessorKey: 'title',
+    filterFn: (row, columnId, filterValue, addMeta) => {
+      row.getValue(columnId);
+      console.log(filterValue);
+      return true;
+    },
     header: () => (
       <HeaderCell>
         <span>Title</span>
