@@ -1,14 +1,13 @@
 import { css } from '@emotion/react';
-import { Suspense, useState } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
-import { ErrorFallback } from './components/ErrorFallback';
-import { LoadingFallback } from './components/LoadingFallback';
-import { Table } from './components/Table';
+import { useState } from 'react';
+import { TableContainer } from './components/TableContainer';
 
 export const App = () => {
   const maxWidth = 800;
 
   const [width, setWidth] = useState(800);
+
+  const [searchValue, setSearchValue] = useState('');
 
   return (
     <div
@@ -24,22 +23,11 @@ export const App = () => {
     >
       <section
         css={css`
-          width: ${width}px;
-          height: 300px;
           border-radius: 4px;
           box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-          display: flex;
-          flex-direction: column;
-          padding: 20px;
         `}
       >
-        <h2>Table</h2>
-
-        <ErrorBoundary fallbackRender={ErrorFallback}>
-          <Suspense fallback={<LoadingFallback />}>
-            <Table />
-          </Suspense>
-        </ErrorBoundary>
+        <TableContainer width={width} />
       </section>
 
       <section
@@ -47,28 +35,49 @@ export const App = () => {
           user-select: none;
         `}
       >
-        <label>
-          <p
-            css={css`
+        <div
+          css={css`
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            & > label > * {
               margin: 0;
+            }
+          `}
+        >
+          <label
+            css={css`
+              display: flex;
+              gap: 8px;
             `}
           >
-            width: {width}
-          </p>
-          <input
-            type="range"
-            css={css`
-              width: 800px;
-            `}
-            min={0}
-            max={1}
-            step={1 / maxWidth}
-            value={width / maxWidth}
-            onChange={({ currentTarget }) =>
-              setWidth(Number(currentTarget.value) * maxWidth)
-            }
-          />
-        </label>
+            <span>search:</span>
+            <input
+              value={searchValue}
+              onChange={({ currentTarget }) =>
+                setSearchValue(currentTarget.value)
+              }
+            />
+          </label>
+
+          <label>
+            <p>width: {width}</p>
+            <input
+              type="range"
+              css={css`
+                width: 800px;
+              `}
+              min={0}
+              max={1}
+              step={1 / maxWidth}
+              value={width / maxWidth}
+              onChange={({ currentTarget }) =>
+                setWidth(Number(currentTarget.value) * maxWidth)
+              }
+            />
+          </label>
+        </div>
       </section>
     </div>
   );

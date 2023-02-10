@@ -2,10 +2,10 @@ import type { Todo } from '@table/queries';
 import { queries } from '@table/queries';
 import { useQuery } from '@tanstack/react-query';
 import {
-  useReactTable,
-  getCoreRowModel,
   flexRender,
+  getCoreRowModel,
   getFilteredRowModel,
+  useReactTable,
 } from '@tanstack/react-table';
 import { memo } from 'react';
 import { columns } from './columns';
@@ -17,7 +17,7 @@ export const Table = memo(() => {
     queryFn: queries.getTodoList,
   });
 
-  const tableInstance = useReactTable<Todo>({
+  const table = useReactTable<Todo>({
     data: query.data ?? [],
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -28,7 +28,7 @@ export const Table = memo(() => {
     <TableStyles>
       <table>
         <thead>
-          {tableInstance.getHeaderGroups().map(({ id, headers }) => (
+          {table.getHeaderGroups().map(({ id, headers }) => (
             <tr key={id}>
               {headers.map((header) => (
                 <th key={header.id}>
@@ -43,7 +43,7 @@ export const Table = memo(() => {
         </thead>
 
         <tbody>
-          {tableInstance.getRowModel().rows.map((row) => (
+          {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id}>
