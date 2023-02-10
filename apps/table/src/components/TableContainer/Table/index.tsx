@@ -10,7 +10,7 @@ import { columns } from './columns';
 export const Table = memo((props: { data: Todo[] }) => {
   const tableInstance = useReactTable<Todo>({
     columns,
-    data: props.data.slice(0, 1),
+    data: props.data,
     getCoreRowModel: getCoreRowModel(),
   });
 

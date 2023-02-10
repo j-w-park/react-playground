@@ -1,6 +1,9 @@
 import { css } from '@emotion/react';
-import { TableContainer } from '@table/components/TableContainer';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorFallback } from './components/ErrorFallback';
+import { LoadingFallback } from './components/LoadingFallback';
+import { TableContainer } from './components/TableContainer';
 
 export const App = () => {
   const maxWidth = 800;
@@ -32,7 +35,11 @@ export const App = () => {
       >
         <h2>Table</h2>
 
-        <TableContainer />
+        <ErrorBoundary fallbackRender={ErrorFallback}>
+          <Suspense fallback={<LoadingFallback />}>
+            <TableContainer />
+          </Suspense>
+        </ErrorBoundary>
       </section>
 
       <section
