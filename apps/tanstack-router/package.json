@@ -9,6 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@tanstack/react-query": "latest",
+    "@tanstack/react-query-devtools": "^4.24.12",
+    "@tanstack/react-router": "^0.0.1-alpha.0",
+    "@tanstack/react-router-devtools": "^0.0.1-alpha.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
