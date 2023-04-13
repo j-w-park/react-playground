@@ -1,7 +1,7 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { queryClient } from '@error-boundary/queries';
+import { queryClient } from '@error-boundary/query';
 import { App } from './App';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
