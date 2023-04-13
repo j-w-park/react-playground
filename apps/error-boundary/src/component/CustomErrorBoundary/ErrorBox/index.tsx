@@ -7,14 +7,30 @@ export const ErrorBox = (props: FallbackProps) => {
       css={css`
         width: 100%;
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+        gap: 16px;
       `}
     >
-      <p>에러가 발생했습니다.</p>
-      <p>
-        <strong>{props.error.message}</strong>
-      </p>
-      <button type="button" onClick={() => props.resetErrorBoundary()}>
-        retry
+      <h1>ERROR</h1>
+      <pre
+        css={css`
+          font-size: 16px;
+        `}
+      >
+        {props.error.message}
+      </pre>
+      <button
+        type="button"
+        onClick={() => props.resetErrorBoundary()}
+        css={css`
+          padding: 8px 16px;
+        `}
+      >
+        RETRY
       </button>
     </div>
   );
