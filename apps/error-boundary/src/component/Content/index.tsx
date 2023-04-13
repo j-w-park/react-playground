@@ -2,22 +2,30 @@ import { useQuery } from '@tanstack/react-query';
 import type { Todo } from '@error-boundary/queries';
 
 export const Content = () => {
+  // const errorQuery = useQuery({
+  //   queryKey: ['error'],
+  //   queryFn: () =>
+  //     new Promise((_, reject) =>
+  //       setTimeout(() => reject(new Error('Mocking error')), 1000)
+  //     ),
+  // });
+
   const query = useQuery({
     queryKey: ['todo'],
-    queryFn: async () => {
-      const response = await fetch(
-        'https://jsonplaceholder.typicode.com/todos'
-      );
-      const body = await response.json();
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      throw new Error('asdf');
-      return body as Todo[];
-    },
+    queryFn: () =>
+      fetch('https://jsonplaceholder.typicode.com/todos').then<
+        ReadonlyArray<{
+          readonly completed: boolean;
+          readonly id: number;
+          readonly title: string;
+          readonly userId: number;
+        }>
+      >((res) => res.json()),
   });
 
   return (
     <ul>
-      list
+      - todo list -
       {query.data?.map((todo) => (
         <li key={todo.id}>{todo.title}</li>
       ))}
