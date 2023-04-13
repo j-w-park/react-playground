@@ -7,12 +7,12 @@ const getUrl = (path: string) =>
   new URL(path, 'https://jsonplaceholder.typicode.com');
 
 export const Content = () => {
-  // const errorQuery = useQuery({
-  //   queryKey: ['error'],
-  //   queryFn: () =>
-  //     new Promise((_, reject) =>
-  //       setTimeout(() => reject(new Error('Mocking error')), 1000)
-  //     ),
+  // When using React Query in suspense mode, this pattern of parallelism does not work,
+  // since the first query would throw a promise internally and would suspend the component
+  // before the other queries run. To get around this, you'll either need to use the
+  // useQueries hook (which is suggested) or orchestrate your own parallelism with separate
+  // components for each useQuery instance (which is lame).
+
   const { data: todos } = useQuery({
     queryKey: ['/todos'] as const,
     queryFn: ({ queryKey: [path], signal }) =>
