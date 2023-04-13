@@ -1,5 +1,5 @@
+import { invariant } from '@error-boundary/utils';
 import { useQuery } from '@tanstack/react-query';
-import type { Todo } from '@error-boundary/queries';
 
 export const Content = () => {
   // const errorQuery = useQuery({
@@ -23,10 +23,12 @@ export const Content = () => {
       >((res) => res.json()),
   });
 
+  invariant(!!query.data, 'Query data must be defined.');
+
   return (
     <ul>
       - todo list -
-      {query.data?.map((todo) => (
+      {query.data.map((todo) => (
         <li key={todo.id}>{todo.title}</li>
       ))}
     </ul>
