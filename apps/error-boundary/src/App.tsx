@@ -1,8 +1,10 @@
 import { css } from '@emotion/react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { CustomSuspense } from './component/CustomSuspense';
-import { CustomErrorBoundary } from './component/CustomErrorBoundary';
 // import { Content } from './component/Content';
+// import { ContentError } from './component/ContentError';
+import { ContentParallelQueries } from './component/ContentParallelQueries';
+import { CustomErrorBoundary } from './component/CustomErrorBoundary';
+import { CustomSuspense } from './component/CustomSuspense';
 
 export const App = () => {
   return (
@@ -15,6 +17,8 @@ export const App = () => {
       <CustomErrorBoundary>
         <CustomSuspense>
           {/* <Content /> */}
+          {/* <ContentError /> */}
+          <ContentParallelQueries />
         </CustomSuspense>
       </CustomErrorBoundary>
       <ReactQueryDevtools />
