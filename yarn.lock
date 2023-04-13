@@ -831,6 +831,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/react-query-devtools@npm:^4.29.1":
+  version: 4.29.1
+  resolution: "@tanstack/react-query-devtools@npm:4.29.1"
+  dependencies:
+    "@tanstack/match-sorter-utils": ^8.7.0
+    superjson: ^1.10.0
+    use-sync-external-store: ^1.2.0
+  peerDependencies:
+    "@tanstack/react-query": 4.29.1
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: f3b38a9b8480176fbed6bfbe83dd93049892f38c42aea1431743c476bc16dd02752cf3f2a499d2d0b973457b7e0f3792f365686b0f6354ddc3017a543fdfe317
+  languageName: node
+  linkType: hard
+
 "@tanstack/react-query@npm:^4.24.4":
   version: 4.24.4
   resolution: "@tanstack/react-query@npm:4.24.4"
@@ -1816,6 +1831,7 @@ __metadata:
   dependencies:
     "@emotion/react": ^11.10.5
     "@tanstack/react-query": ^4.24.4
+    "@tanstack/react-query-devtools": ^4.29.1
     "@types/react": ^18.0.27
     "@types/react-dom": ^18.0.10
     "@vitejs/plugin-react-swc": ^3.0.0
