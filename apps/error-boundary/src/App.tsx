@@ -1,10 +1,6 @@
 import { css } from '@emotion/react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-// import { Content } from './component/Content';
-// import { ContentError } from './component/ContentError';
-import { ContentParallelQueries } from './component/ContentParallelQueries';
-import { CustomErrorBoundary } from './component/CustomErrorBoundary';
-import { CustomSuspense } from './component/CustomSuspense';
+import { MutationTest } from './component/MutationTest';
 
 export const App = () => {
   return (
@@ -14,13 +10,7 @@ export const App = () => {
         height: 100vh;
       `}
     >
-      <CustomErrorBoundary>
-        <CustomSuspense>
-          {/* <Content /> */}
-          {/* <ContentError /> */}
-          <ContentParallelQueries />
-        </CustomSuspense>
-      </CustomErrorBoundary>
+      <MutationTest />
       <ReactQueryDevtools />
     </main>
   );
