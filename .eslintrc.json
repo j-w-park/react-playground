@@ -1,18 +1,22 @@
 {
   "root": true,
-  "ignorePatterns": ["node_modules", "dist", "build", "public", "*.cjs"],
+  "env": { "node": true },
   "parser": "@typescript-eslint/parser",
+  "ignorePatterns": ["node_modules", "dist", "build", "public"],
   "extends": [
     "eslint:recommended",
     "airbnb",
     "turbo",
     "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended" // it must be last
   ],
+  "plugins": ["react-refresh"],
   "settings": {
-    "react": { "version": "detect" },
     "import/resolver": {
       "typescript": {
         "alwaysTryTypes": true,
@@ -21,10 +25,17 @@
     }
   },
   "rules": {
+    // turbo
+    // Turborepo automatically infers and includes public environment variables when calculating
+    // cache keys for apps built with detected frameworks. You can safely omit framework-specific
+    // public environment variables from turbo.json
     "turbo/no-undeclared-env-vars": [
       "error",
-      { "allowList": ["^NEXT_PUBLIC_[A-Z]+$"] }
+      { "allowList": ["^NEXT_PUBLIC_(\\w)+$"] }
     ],
+
+    // import
+    // .js, .jsx, .ts, .tsx는 임포트 시 확장자 생략
     "import/extensions": [
       "error",
       "always",
@@ -38,10 +49,6 @@
         }
       }
     ],
-    // for simple-import-sort
-    "import/first": "error",
-    "import/newline-after-import": "error",
-    "import/no-duplicates": "error",
     // 아래 파일만 devDependencies 임포트 허용
     "import/no-extraneous-dependencies": [
       "error",
@@ -85,10 +92,6 @@
     // react-refresh
     // Validate that your components can safely be updated with fast refresh.
     "react-refresh/only-export-components": "warn",
-
-    // simple-import-sort
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
 
     // jsx-a11y
     // airbnb config에서 htmlFor와 nesting을 모두 사용하도록 강제하는 세팅 비활성화
