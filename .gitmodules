@@ -1,0 +1,3 @@
+[submodule "lib/tokenizers"]
+	path = lib/tokenizers
+	url = https://github.com/huggingface/tokenizers.git
